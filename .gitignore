@@ -1,0 +1,29 @@
+# Specific Build Output Folders (Adjust version/name if needed)
+GNU ARM v12.2.1 - Debug/
+GNU ARM v12.2.1 - Release/ 
+
+# General Build Output Folder Pattern (Safer)
+GNU ARM v*/
+Debug/
+Release/
+
+# Object Files, Dependencies, Binaries etc.
+*.o
+*.obj
+*.d
+*.elf
+*.axf
+*.map
+*.hex
+*.bin
+*.swo
+
+# IDE specific files (keep these)
+*.launch
+*.pdm
+*.prefs
+.settings/
+
+# Other common ignores
+*~
+*.bak
