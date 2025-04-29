@@ -33,26 +33,6 @@ The system works as follows:
     ```
 * **Serial Terminal:** A program to view serial output (e.g., Tera Term, PuTTY, `screen`, Simplicity Studio Serial Console).
 
-## Repository Structure
-
-├── data/                     # Contains collected CSV data (Example data might be included)
-│   ├── flame.csv
-│   └── noflame.csv
-├── firmware/
-│   ├── data_acquisition/     # Simplicity Studio project for streaming raw data (app.c)
-│   └── flame_detector/       # Simplicity Studio project for TFLM inference (app.cpp)
-│       └── model/            # Generated TFLite model C files go here
-│           ├── flame_detector_float_model.cc
-│           └── flame_detector_float_model.h
-├── training/                 # Python scripts for data handling and model training
-│   ├── collect_flame_data.py # Script to collect data from serial port
-│   ├── create_flame_tinyml.py# Script to train model and generate C array
-│   └── requirements.txt      # Python dependencies list (optional)
-├── .gitignore                # Git ignore file for Simplicity Studio/Python projects
-└── README.md                 
-
-
-
 
 ## Setup and Usage
 
@@ -131,16 +111,7 @@ Connect the MLX90640 sensor to the EFR32 Dev Kit using the I2C interface. Refer 
 * **Sensor Errors (Init Fail, Read Error):** Double-check I2C wiring (`SDA`/`SCL` swap is common, ensure `VCC`/`GND` are correct). Verify the I2C pins configured in the `I2CSPM` component settings match the hardware connections (`PC04`/`PC05` for `I2CSPM` instance `sensor` if using defaults).
 * **TFLM Errors (Allocation/Ops):** Increase `TENSOR_ARENA_SIZE` in `firmware/flame_detector/app.cpp` if you get allocation errors during `AllocateTensors()`. Ensure all required TensorFlow Lite ops (e.g., `AddFullyConnected`, `AddRelu`, `AddLogistic`) are registered in `init_ml_model` in `app.cpp` - match these to the layers used in your Keras model.
 * **Build Errors:** Ensure all required SDK components listed in the `.slcp` file are installed via Simplicity Studio (`Install` button). Check that model C files (`.cc`, `.h`) are correctly located within the project view and part of the build. Ensure C++ support is enabled if using `.cpp` files.
-
-## License
-
-*(Optional: Add your chosen license here, e.g., MIT, Apache 2.0. You should also add a LICENSE file to the repository.)*
-
-This project is licensed under the [NAME OF LICENSE] License - see the `LICENSE` file for details.
-
-## Acknowledgments
-
-*(Optional: Mention any libraries, code snippets, or tutorials that were helpful.)*
+ies, code snippets, or tutorials that were helpful.)*
 * Melexis for the MLX90640 sensor.
 * Silicon Labs for the EFR32MG24 and Simplicity Studio.
 * The TensorFlow Lite Micro team.
